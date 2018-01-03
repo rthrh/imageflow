@@ -21,7 +21,7 @@ private:
     QScopedPointer<Ui::MainWindow> ui;
 
 private slots:
-    void ctxMenu(QTreeWidgetItem *item, int column);
+    void addNewComponent(QTreeWidgetItem *item, int column);
 };
 
 #endif

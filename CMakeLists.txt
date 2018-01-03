@@ -17,8 +17,13 @@ project(imageflow VERSION 1.0)
 set(SOURCES
     src/definitions.hpp
     src/main.cpp
+
     src/gui/mainwindow.cpp
     src/gui/mainwindow.ui
+    src/gui/node.cpp
+    src/gui/edge.cpp
+    src/gui/graphwidget.cpp
+
     src/imagepipeline.cpp
     src/component/opencvcomponent.cpp
     src/component/inputcomponentfactory.cpp
@@ -29,6 +34,9 @@ set(SOURCES
 set(HEADERS
     src/component/icomponentfactory.h
     src/component/component.h
+    src/gui/node.h
+    src/gui/edge.h
+    src/gui/graphwidget.h
     )
 
 

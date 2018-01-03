@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QWidget>
 
+#include "graphwidget.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -16,21 +18,26 @@ MainWindow::MainWindow(QWidget *parent) :
     itm->setText(0, "test string");
     ui->treeCompView->insertTopLevelItem(0, itm);
 
+    GraphWidget *widget = new GraphWidget;
 
+   // this->setCentralWidget(widget); //uncomment to see graphs and nodes
 
     // MAKE CONNECTIONS HERE
-    connect(        ui->treeCompView, &QTreeWidget::itemDoubleClicked,  [=]( QTreeWidgetItem *item, int column) { ctxMenu(item, column); }    );
+    connect(        ui->treeCompView, &QTreeWidget::itemDoubleClicked,  [=]( QTreeWidgetItem *item, int column) { addNewComponent(item, column); }    );
 
 
 }
 
 MainWindow::~MainWindow()
 {
-    // DUNNO IF THIS IMPLEMENTATION IS NEEDED
 
 }
 
-void MainWindow::ctxMenu(QTreeWidgetItem *item, int column)
+void MainWindow::addNewComponent(QTreeWidgetItem *item, int column)
 {
+    // Function is supposed to find proper component name based on clicked column, create its gui diagram and return instance of object (singleton used)
+
+    //auto Node =
+
     qDebug () << "dupa " << column;
 }
