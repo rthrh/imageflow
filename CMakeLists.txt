@@ -8,9 +8,10 @@ set(CMAKE_AUTORCC ON) # Resource files
 set(CMAKE_AUTOUIC ON) # UI files
 
 # Add folder where are supportive functions
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+#set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+SET(CMAKE_CXX_FLAGS "-std=c++11")
 
 project(imageflow VERSION 1.0)
 
@@ -20,6 +21,8 @@ set(SOURCES
 
     src/gui/mainwindow.cpp
     src/gui/mainwindow.ui
+
+
     src/gui/node.cpp
     src/gui/edge.cpp
     src/gui/graphwidget.cpp
