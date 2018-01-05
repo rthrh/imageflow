@@ -1,9 +1,6 @@
 #ifndef IMAGEPIPELINE_H
 #define IMAGEPIPELINE_H
 
-#include <QMainWindow>
-#include <QObject>
-#include <QWidget>
 #include <opencv2/core/core.hpp>
 
 

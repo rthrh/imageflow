@@ -2,7 +2,6 @@
 #define INPUTCOMPONENTFACTORY_H
 
 #include "icomponentfactory.h"
-#include <QObject>
 
 class InputComponentFactory : public IComponentFactory
 {

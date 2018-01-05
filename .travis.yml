@@ -26,8 +26,12 @@ before_install:
   
 install:
   # Install and source QT
-  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+  #- sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -qq
+  - sudo apt-get install gcc-snapshot -y
+  - sudo apt-get install gcc-6 g++-6 -y
+  
   - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
   
   # OpenCV dependencies - Details available at: http://docs.opencv.org/trunk/doc/tutorials/introduction/linux_install/linux_install.html
@@ -58,6 +62,7 @@ install:
   - cd ../../
   
 script:
+  - export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug
   - chmod +x .script_travis.sh
   - ./.script_travis.sh
 
