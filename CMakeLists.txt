@@ -23,9 +23,9 @@ set(SOURCES
     src/gui/mainwindow.ui
 
 
-    src/gui/node.cpp
-    src/gui/edge.cpp
-    src/gui/graphwidget.cpp
+    #src/gui/node.cpp
+    #src/gui/edge.cpp
+    #src/gui/graphwidget.cpp
 
     src/imagepipeline.cpp
     src/component/opencvcomponent.cpp
@@ -37,9 +37,9 @@ set(SOURCES
 set(HEADERS
     src/component/icomponentfactory.h
     src/component/component.h
-    src/gui/node.h
-    src/gui/edge.h
-    src/gui/graphwidget.h
+    #src/gui/node.h
+    #src/gui/edge.h
+    #src/gui/graphwidget.h
     )
 
 
