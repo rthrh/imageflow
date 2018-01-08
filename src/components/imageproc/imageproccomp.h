@@ -1,17 +1,13 @@
 #ifndef IMAGEPROCCOMP_H
 #define IMAGEPROCCOMP_H
 
-#include "../component.h"
+#include "../icomponent.h"
 #include <QObject>
 
 class ImageProcComp : public Component
 {
 public:
     ImageProcComp();
-
-    bool setProperties();
-    bool getProperties();
-
 
 };
 

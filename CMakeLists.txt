@@ -12,20 +12,34 @@ set(CMAKE_AUTOUIC ON) # UI files
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
-
+SET(OpenCV_DIR "/usr/local/share/OpenCV")
 project(imageflow VERSION 1.0)
 
 set(SOURCES
     src/definitions.hpp
 
     src/imagepipeline/imagepipeline.cpp
-    src/components/imageproc/imageproc.cpp
-    src/components/inputcomponentfactory.cpp
 
+    src/components/factory/inputcomponentfactory.cpp
+    src/components/factory/outputcomponentfactory.cpp
+    src/components/factory/imageproccomponentfactory.cpp
+    src/components/factory/plotcomponentfactory.cpp
+    src/components/factory/machinelearncomponentfactory.cpp
+    src/components/factory/cudacomponentfactory.cpp
+    src/components/factory/usercomponentfactory.cpp
+    src/components/factory/featurecomponentfactory.cpp
     #src/gui/graph/node.cpp
     #src/gui/graph/edge.cpp
     #src/gui/graph/graphwidget.cpp
 
+    src/components/cuda/cudacomp.cpp
+    src/components/feature/featurecomp.cpp
+    src/components/input/inputcomp.cpp
+    src/components/output/outputcomp.cpp
+    src/components/machinelearn/machinelearncomp.cpp
+    src/components/plot/plotcomp.cpp
+    src/components/user/usercomp.cpp
+    src/components/imageproc/imageproccomp.cpp
 
 
     src/main.cpp
@@ -34,10 +48,10 @@ set(SOURCES
 )
 
 set(HEADERS
-    src/components/icomponentfactory.h
-    src/components/component.h
+    src/components/factory/icomponentfactory.h
+    src/components/icomponent.h
 
-    src/components/imageproc/imageproc.h
+    #src/components/imageproc/imageproc.h
     #src/gui/graph/node.h
     #src/gui/graph/edge.h
     #src/gui/graph/graphwidget.h
