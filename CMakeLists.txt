@@ -12,13 +12,21 @@ set(CMAKE_AUTOUIC ON) # UI files
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
+
+set(CMAKE_PREFIX_PATH "../Qt5.9.1/5.9.1/gcc_64")
 SET(OpenCV_DIR "/usr/local/share/OpenCV")
+
+
 project(imageflow VERSION 1.0)
 
 set(SOURCES
     src/definitions.hpp
 
     src/imagepipeline/imagepipeline.cpp
+    
+    src/components/imageproc/medianblur.cpp
+
+
 
     src/components/factory/inputcomponentfactory.cpp
     src/components/factory/outputcomponentfactory.cpp
@@ -28,9 +36,9 @@ set(SOURCES
     src/components/factory/cudacomponentfactory.cpp
     src/components/factory/usercomponentfactory.cpp
     src/components/factory/featurecomponentfactory.cpp
-    #src/gui/graph/node.cpp
-    #src/gui/graph/edge.cpp
-    #src/gui/graph/graphwidget.cpp
+    src/gui/graph/node.cpp
+    src/gui/graph/edge.cpp
+    src/gui/graph/graphwidget.cpp
 
     src/components/cuda/cudacomp.cpp
     src/components/feature/featurecomp.cpp
@@ -63,13 +71,11 @@ set(HEADERS
 find_package(Qt5Widgets REQUIRED)
 find_package(OpenCV REQUIRED)
 
-# source_group("UI Files" FILES ${UI_FILES})
 
 ##to be added
 #add_subdirectory(src)
 
 
-#to be cleaned
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 qt5_use_modules(${PROJECT_NAME} Widgets)
