@@ -1,6 +1,7 @@
 #include "imageproccomp.h"
 
-ImageProcComp::ImageProcComp()
+template <class ...T>
+ImageProcComp<T...>::ImageProcComp()
 {
 
 }

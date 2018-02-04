@@ -21,33 +21,38 @@ project(imageflow VERSION 1.0)
 
 set(SOURCES
     src/definitions.hpp
+    src/components/functor.cpp
 
     src/imagepipeline/imagepipeline.cpp
     
-    src/components/imageproc/medianblur.cpp
+
+
+    
 
 
 
-    src/components/factory/inputcomponentfactory.cpp
-    src/components/factory/outputcomponentfactory.cpp
-    src/components/factory/imageproccomponentfactory.cpp
-    src/components/factory/plotcomponentfactory.cpp
-    src/components/factory/machinelearncomponentfactory.cpp
-    src/components/factory/cudacomponentfactory.cpp
-    src/components/factory/usercomponentfactory.cpp
-    src/components/factory/featurecomponentfactory.cpp
+    #src/components/factory/inputcomponentfactory.cpp
+    #src/components/factory/outputcomponentfactory.cpp
+    #src/components/factory/imageproccomponentfactory.cpp
+    #src/components/factory/plotcomponentfactory.cpp
+    #src/components/factory/machinelearncomponentfactory.cpp
+    #src/components/factory/cudacomponentfactory.cpp
+    #src/components/factory/usercomponentfactory.cpp
+    #src/components/factory/featurecomponentfactory.cpp
     src/gui/graph/node.cpp
     src/gui/graph/edge.cpp
     src/gui/graph/graphwidget.cpp
 
-    src/components/cuda/cudacomp.cpp
-    src/components/feature/featurecomp.cpp
-    src/components/input/inputcomp.cpp
-    src/components/output/outputcomp.cpp
-    src/components/machinelearn/machinelearncomp.cpp
-    src/components/plot/plotcomp.cpp
-    src/components/user/usercomp.cpp
+    #src/components/cuda/cudacomp.cpp
+    #src/components/feature/featurecomp.cpp
+    #src/components/input/inputcomp.cpp
+    #src/components/output/outputcomp.cpp
+    #src/components/machinelearn/machinelearncomp.cpp
+    #src/components/plot/plotcomp.cpp
+    #src/components/user/usercomp.cpp
     src/components/imageproc/imageproccomp.cpp
+
+    src/components/imageproc/medianblur.cpp
 
 
     src/main.cpp

@@ -4,7 +4,8 @@
 #include "../icomponent.h"
 #include <QObject>
 
-class ImageProcComp : public Component
+template < class ... T >
+class ImageProcComp : public Component<T...>
 {
 public:
     ImageProcComp();

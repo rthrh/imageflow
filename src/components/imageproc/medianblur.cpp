@@ -7,13 +7,13 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
-class MedianBlurComp : ImageProcComp
+class MedianBlurComp : ImageProcComp<int,int,int> //types for testing purposes
 {
     
     // void medianBlur(InputArray src, OutputArray dst, int ksize)
     
 
-    auto foo = std::bind (cv::medianBlur(InputArray src, OutputArray dst, int ksize));
+    //auto foo = std::bind (cv::medianBlur(InputArray src, OutputArray dst, int ksize));
 
 
 

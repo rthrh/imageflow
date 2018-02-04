@@ -1,6 +1,6 @@
 #include "cudacomp.h"
 
-CudaComp::CudaComp()
+CudaComp<T...>::CudaComp()
 {
 
 }

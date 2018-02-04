@@ -2,9 +2,11 @@
 #define CUDACOMP_H
 
 #include "../icomponent.h"
+
 #include <QObject>
 
-class CudaComp : public Component
+template <typename ... T>
+class CudaComp : public Component<T...>
 {
 public:
     CudaComp();
