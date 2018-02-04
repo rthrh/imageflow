@@ -12,9 +12,10 @@ template<typename returnType, typename... Args>
 class Functor
 {
     public:
-        Functor();
-        returnType execute(Args... args) = 0;
+        Functor(returnType, Args... args);
+        returnType execute(Args... args);
 
     private:
+        Functor();
         std::function<returnType(Args...)> foo;
 };

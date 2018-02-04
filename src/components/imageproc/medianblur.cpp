@@ -3,19 +3,16 @@
 
 #include <QVariant>
 #include "imageproccomp.h"
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
 
-class MedianBlurComp : ImageProcComp<int,int,int> //types for testing purposes
+
+class MedianBlurComp : ImageProcComp<cv::Mat, cv::Mat, int>
 {
-    
-    // void medianBlur(InputArray src, OutputArray dst, int ksize)
-    
+    // void medianBlur(InputArray src, OutputArray dst, int ksize)  
+    public:  
+        cv::Mat m1;
+        cv::Mat m2;
 
-    //auto foo = std::bind (cv::medianBlur(InputArray src, OutputArray dst, int ksize));
-
-
+        std::function<void (cv::Mat, cv::Mat, int)> f = std::bind(cv::medianBlur, m1, m2, 2);
 
 
 };

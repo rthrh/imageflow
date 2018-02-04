@@ -8,7 +8,7 @@
 
 #include "functor.cpp"
 
-template < class ... T >
+template < typename retType, class ... Args >
 struct Component
 {
     // Component class should hold function pointer to be executed and list of parameters (will by varying).
@@ -32,8 +32,10 @@ struct Component
 private:
     std::string compName;
 
-    std::tuple<T ...> argsList;
-    //Functor foo(std::function<void>(), argsList<T ...>);
+    std::tuple<Args ...> argsList;
+
+    Functor<retType,Args ...> foo(retType,Args ...); //default constructor to be removed
+
     size_t inputWidth;
     size_t inputHeight;
     size_t outputWidth;
