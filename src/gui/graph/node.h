@@ -19,7 +19,7 @@ public:
     enum { Type = UserType + 1 };
     int type() const override { return Type; }
 
-    void calculateForces();
+    void calculateForces(); //TODO: rename and clean this method
     bool advance();
 
     QRectF boundingRect() const override;
@@ -36,6 +36,7 @@ private:
     QList<Edge *> edgeList;
     QPointF newPos;
     GraphWidget *graph;
+
 };
 
 #endif // NODE_H

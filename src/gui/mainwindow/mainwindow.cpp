@@ -26,8 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
    // this->setCentralWidget(widget); //uncomment to see graphs and nodes
 
     // MAKE CONNECTIONS HERE
-    connect(        ui->treeCompView, &QTreeWidget::itemDoubleClicked,  [=]( QTreeWidgetItem *item, int column) { MainWindow::addNewComponent(item, column); }    );
-
+    connect(        ui->treeCompView, &QTreeWidget::itemDoubleClicked,  [=]( QTreeWidgetItem *item, int column) { ui->graphicsView->addNewNode();} );
 
 }
 

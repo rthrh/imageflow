@@ -17,9 +17,9 @@ public:
     void itemMoved();
 
 public slots:
-    void shuffle();
     void zoomIn();
     void zoomOut();
+    void addNewNode();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -34,6 +34,7 @@ protected:
 private:
     int timerId;
     Node *centerNode;
+    QGraphicsScene *_scene;
 };
 
 #endif // GRAPHWIDGET_H
