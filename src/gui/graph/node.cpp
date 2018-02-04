@@ -91,7 +91,7 @@ QRectF Node::boundingRect() const
 QPainterPath Node::shape() const
 {
     QPainterPath path;
-    path.addEllipse(-10, -10, 20, 20);
+    path.addRect(-10, -10, 20, 20);
     return path;
 }
 
@@ -99,7 +99,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     painter->setPen(Qt::NoPen);
     painter->setBrush(Qt::darkGray);
-    painter->drawEllipse(-7, -7, 20, 20);
+    painter->drawRect(-7, -7, 20, 20);
 
     QRadialGradient gradient(-3, -3, 10);
     if (option->state & QStyle::State_Sunken) {
@@ -114,7 +114,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->setBrush(gradient);
 
     painter->setPen(QPen(Qt::black, 0));
-    painter->drawEllipse(-10, -10, 20, 20);
+    painter->drawRect(-10, -10, 20, 20);
 }
 
 QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)

@@ -32,18 +32,35 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>60</y>
-      <width>191</width>
-      <height>101</height>
+      <x>280</x>
+      <y>10</y>
+      <width>201</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Add Component</string>
+    </property>
+   </widget>
+   <widget class="GraphWidget" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>275</x>
+      <y>71</y>
+      <width>371</width>
+      <height>271</height>
+     </rect>
     </property>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GraphWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>../src/gui/graph/graphwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

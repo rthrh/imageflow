@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QWidget>
 
-//#include "graphwidget.h"
+#include "../graph/graphwidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     itm->setText(0, "test string");
     ui->treeCompView->insertTopLevelItem(0, itm);
 
+
+
+    QGraphicsView *graphicsView = new GraphWidget();
     //GraphWidget *widget = new GraphWidget;
 
    // this->setCentralWidget(widget); //uncomment to see graphs and nodes
@@ -38,6 +41,7 @@ void MainWindow::addNewComponent(QTreeWidgetItem *item, int column)
     // Function is supposed to find proper component name based on clicked column, create its gui diagram and return instance of object
 
     //auto Node =
+
 
     qDebug () << "dupa " << column;
 }

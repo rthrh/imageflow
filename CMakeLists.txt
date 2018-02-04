@@ -8,7 +8,7 @@ set(CMAKE_AUTORCC ON) # Resource files
 set(CMAKE_AUTOUIC ON) # UI files
 
 # Add folder where are supportive functions
-#set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
@@ -24,12 +24,6 @@ set(SOURCES
     src/components/functor.cpp
 
     src/imagepipeline/imagepipeline.cpp
-    
-
-
-    
-
-
 
     #src/components/factory/inputcomponentfactory.cpp
     #src/components/factory/outputcomponentfactory.cpp
