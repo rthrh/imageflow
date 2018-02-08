@@ -3,11 +3,18 @@
 
 #include "../icomponent.h"
 #include <QObject>
+//#include <opencv2/highgui/highgui.hpp>
 
-class OutputComp : public Component
+template < class ... T >
+class OutputComp : public Component<T...>
 {
 public:
     OutputComp();
+    virtual bool displayImage() = 0;
+    virtual bool setImage(cv::Mat &_image) = 0;
+
+private:
+    cv::Mat image;
 
 };
 

@@ -4,10 +4,12 @@
 #include "../icomponent.h"
 #include <QObject>
 
-class InputComp : public Component
+template < class ... T >
+class InputComp : public Component<T...>
 {
 public:
     InputComp();
+    virtual bool openFile() = 0;
 
 private:
     cv::Mat image;

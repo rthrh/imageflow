@@ -1,6 +1,7 @@
 #include "outputcomp.h"
 
-OutputComp::OutputComp()
+template <class ...T>
+OutputComp<T...>::OutputComp()
 {
 
 }

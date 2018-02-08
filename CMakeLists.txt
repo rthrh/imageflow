@@ -39,8 +39,10 @@ set(SOURCES
 
     #src/components/cuda/cudacomp.cpp
     #src/components/feature/featurecomp.cpp
-    #src/components/input/inputcomp.cpp
-    #src/components/output/outputcomp.cpp
+    src/components/input/inputcomp.cpp
+    src/components/input/imageinputcomp.cpp
+    src/components/output/outputcomp.cpp
+    src/components/output/imageshowcomp.cpp
     #src/components/machinelearn/machinelearncomp.cpp
     #src/components/plot/plotcomp.cpp
     #src/components/user/usercomp.cpp
