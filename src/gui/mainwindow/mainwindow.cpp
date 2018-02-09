@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
    // this->setCentralWidget(widget); //uncomment to see graphs and nodes
 
     // MAKE CONNECTIONS HERE
-    connect(        ui->treeCompView, &QTreeWidget::itemDoubleClicked,  [=]( QTreeWidgetItem *item, int column) { ui->graphicsView->addNewNode();} );
+    connect(        ui->treeCompView, &QTreeWidget::itemDoubleClicked,  [=]( QTreeWidgetItem *item, int column) { ui->graphicsView->addNewNode(column, item->text(column).toStdString() );} ); //clean up, id and name should belong to comp item
 
 }
 

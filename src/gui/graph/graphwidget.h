@@ -19,7 +19,7 @@ public:
 public slots:
     void zoomIn();
     void zoomOut();
-    void addNewNode();
+    void addNewNode(int compID, std::string name);
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -35,6 +35,7 @@ private:
     int timerId;
     Node *centerNode;
     QGraphicsScene *_scene;
+    int _nodeID;
 };
 
 #endif // GRAPHWIDGET_H

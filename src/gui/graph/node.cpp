@@ -7,13 +7,14 @@
 #include <QPainter>
 #include <QStyleOption>
 
-Node::Node(GraphWidget *graphWidget)
-    : graph(graphWidget)
+Node::Node(GraphWidget *graphWidget, int compID, std::string name, int nodeID)
+    : graph(graphWidget), _compID(compID), _compName(name), _nodeID(nodeID)
 {
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
     setCacheMode(DeviceCoordinateCache);
     setZValue(-1);
+
 }
 
 void Node::addEdge(Edge *edge)
@@ -34,41 +35,6 @@ void Node::calculateForces()
         return;
     }
 
-   /* // Sum up all forces pushing this item away
-    qreal xvel = 0;
-    qreal yvel = 0;
-    foreach (QGraphicsItem *item, scene()->items()) {
-        Node *node = qgraphicsitem_cast<Node *>(std::move(item));
-        if (!node)
-            continue;
-
-        QPointF vec = mapToItem(node, 0, 0);
-        qreal dx = vec.x();
-        qreal dy = vec.y();
-        double l = 2.0 * (dx * dx + dy * dy);
-        if (l > 0) {
-            xvel += (dx * 150.0) / l;
-            yvel += (dy * 150.0) / l;
-        }
-    }
-
-    // Now subtract all forces pulling items together
-    double weight = (edgeList.size() + 1) * 10;
-    foreach (Edge *edge, edgeList) {
-        QPointF vec;
-        if (edge->sourceNode() == this)
-            vec = mapToItem(edge->destNode(), 0, 0);
-        else
-            vec = mapToItem(edge->sourceNode(), 0, 0);
-        xvel -= vec.x() / weight;
-        yvel -= vec.y() / weight;
-    }
-*/
-
-/*
-    if (qAbs(xvel) < 0.1 && qAbs(yvel) < 0.1)
-        xvel = yvel = 0;
-*/
     QRectF sceneRect = scene()->sceneRect();
     newPos = pos() + QPointF(0, 0);
 
@@ -88,36 +54,55 @@ bool Node::advance()
 QRectF Node::boundingRect() const
 {
     qreal adjust = 2;
-    return QRectF( -10 - adjust, -10 - adjust, 23 + adjust, 23 + adjust);
+
+    //adjust size of a rect here
+    // maybe define model factory here..
+    return QRectF( -10 - adjust, -10 - adjust, 100 + adjust, 100 + adjust);
 }
 
 QPainterPath Node::shape() const
 {
     QPainterPath path;
-    path.addRect(-10, -10, 70, 70);
+
+    QRect rect{-10,-10,144,144}; //return polymorphic shape here
+
+    path.addRect(std::move(rect));
     return path;
 }
 
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
     painter->setPen(Qt::NoPen);
-    painter->setBrush(Qt::darkGray);
-    painter->drawRect(-7, -7, 70, 70);
+    //painter->setBrush(Qt::darkGray);
+    painter->drawRect(-7, -7, 144, 144);
+
 
     QRadialGradient gradient(-3, -3, 10);
     if (option->state & QStyle::State_Sunken) {
         gradient.setCenter(3, 3);
         gradient.setFocalPoint(3, 3);
-        gradient.setColorAt(1, QColor(Qt::yellow).light(120));
-        gradient.setColorAt(0, QColor(Qt::darkYellow).light(120));
+        gradient.setColorAt(1, QColor(Qt::darkGray).light(120));
+        gradient.setColorAt(0, QColor(Qt::gray).light(120));
     } else {
-        gradient.setColorAt(0, Qt::yellow);
-        gradient.setColorAt(1, Qt::darkYellow);
+        gradient.setColorAt(0, Qt::darkGray);
+        gradient.setColorAt(1, Qt::gray);
     }
     painter->setBrush(gradient);
 
     painter->setPen(QPen(Qt::black, 0));
-    painter->drawRect(-10, -10, 70, 70);
+    painter->drawRect(-10, -10, 144, 144);
+
+    painter->setPen(QPen(Qt::white, 0));
+
+    std::string str1 = std::to_string(_compID) + _compName;
+    painter->drawText(0,0,QString(str1.c_str())); //remove that c_str() and make better conversion from std:string to QString
+    std::string str2 = std::string("   nodeID: ") + std::to_string(_nodeID);
+    painter->drawText(0,15,QString(str2.c_str()));
+}
+
+bool Node::setNameString(std::string name)
+{
+    _compName = name;
 }
 
 QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)

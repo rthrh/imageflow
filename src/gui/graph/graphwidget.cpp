@@ -133,7 +133,7 @@ void GraphWidget::drawBackground(QPainter *painter, const QRectF &rect)
     // Text
     QRectF textRect(sceneRect.left() + 4, sceneRect.top() + 4,
                     sceneRect.width() - 4, sceneRect.height() - 4);
-    QString message(tr("Click and drag the nodes around, and zoom with the mouse "));
+    QString message(tr("Graph Widget"));
 
     QFont font = painter->font();
     font.setBold(true);
@@ -165,10 +165,13 @@ void GraphWidget::zoomOut()
     scaleView(1 / qreal(1.2));
 }
 
-void GraphWidget::addNewNode()
+void GraphWidget::addNewNode(int compID, std::string name)
 {
-    Node *node = new Node(this);
+    Node *node = new Node(this, compID, name, _nodeID++);
+    //std::unique_ptr<Node> node = std::make_unique(Node(this, compID, name, _nodeID++));
 
     _scene->addItem(node);
     node->setPos(-50, -50);
+
+
 }
