@@ -1,6 +1,3 @@
 #include "imagepipeline.h"
 
-ImagePipeline::ImagePipeline()
-{
-
-}
+ImagePipeline::ImagePipeline() {}

@@ -5,29 +5,29 @@
 
 class Node;
 
-class Edge : public QGraphicsItem
-{
-public:
-    Edge(Node *sourceNode, Node *destNode);
+class Edge : public QGraphicsItem {
+ public:
+  Edge(Node *sourceNode, Node *destNode);
 
-    Node *sourceNode() const;
-    Node *destNode() const;
+  Node *sourceNode() const;
+  Node *destNode() const;
 
-    void adjust();
+  void adjust();
 
-    enum { Type = UserType + 2 };
-    int type() const override { return Type; }
+  enum { Type = UserType + 2 };
+  int type() const override { return Type; }
 
-protected:
-    QRectF boundingRect() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+ protected:
+  QRectF boundingRect() const override;
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+             QWidget *widget) override;
 
-private:
-    Node *source, *dest;
+ private:
+  Node *source, *dest;
 
-    QPointF sourcePoint;
-    QPointF destPoint;
-    qreal arrowSize;
+  QPointF sourcePoint;
+  QPointF destPoint;
+  qreal arrowSize;
 };
 
-#endif // EDGE_H
+#endif  // EDGE_H
