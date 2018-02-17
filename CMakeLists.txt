@@ -99,10 +99,8 @@ add_definitions(-DVERSION="${VERSION_STRING}")
 
 # find QT5 libs
 find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Concurrent REQUIRED)
 set(REQUIRED_LIBS ${REQUIRED_LIBS}
     Qt5::Widgets
-    Qt5::Concurrent
 )
 
 # find OpenCV
