@@ -1,8 +1,4 @@
 #include "inputcomp.h"
 
-template <class ...T>
-InputComp<T...>::InputComp()
-{
-
-
-}
+template <class... T>
+InputComp<T...>::InputComp() {}

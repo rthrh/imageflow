@@ -3,16 +3,13 @@
 
 #include <opencv2/core/core.hpp>
 
+class ImagePipeline {
+ public:
+  ImagePipeline();
 
-class ImagePipeline
-{
-public:
-    ImagePipeline();
-
-private:
-    //std::function<void()> funArray[256];
-    cv::Mat dupa;
-
+ private:
+  // std::function<void()> funArray[256];
+  cv::Mat dupa;
 };
 
-#endif // IMAGEPIPELINE_H
+#endif  // IMAGEPIPELINE_H
