@@ -1,0 +1,24 @@
+version: 1.0.{build}
+platform: x64
+configuration: Debug
+
+image: Visual Studio 2015
+
+environment:
+  matrix:
+  - GENERATOR: '"Visual Studio 14 2015 Win64"'
+    BUILD_TYPE: Release
+    QT_PATH: C:\Qt\5.7\msvc2015_64
+    OPENCV_DIR: C:\tools\opencv\build\
+build_script:
+  - choco upgrade chocolatey
+  - choco install opencv -y
+
+  - set PATH=%OPENCV_DIR%;%QTDIR%;%PATH%
+  - cd C:\projects\imageflow
+  - mkdir build
+  - cd build
+  - cmake .. -G %GENERATOR% -DCMAKE_PREFIX_PATH=%QT_PATH% -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
+  - cmake --build . --config %BUILD_TYPE%
+
+test: off
