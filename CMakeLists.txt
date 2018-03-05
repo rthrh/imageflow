@@ -3,19 +3,27 @@ cmake_minimum_required(VERSION 3.1) # CMake 3.1 is recommended for Qt5
 set(VERSION_STRING 0.0.1)
 
 #set module path
-set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules )
+set( CMAKE_MODULE_PATH
+    ${CMAKE_MODULE_PATH}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
-#include imageflow src dir
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+#include dirs
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # set additional options
 option(COLOR_OUTPUT "Use color ouput in terminal" ON)
+option(RUN_TESTS "Run tests" ON)
 
 # Qt 5 settings
 set(CMAKE_AUTOMOC ON) # For meta object compiler
 set(CMAKE_AUTORCC ON) # Resource files
 set(CMAKE_AUTOUIC ON) # UI files
 set(CMAKE_CXX_STANDARD 14) # C++14
+
+# set output dirs
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 
 # *.cpp source files
 set(imageflow_SOURCES
@@ -113,11 +121,11 @@ set(REQUIRED_LIBS ${REQUIRED_LIBS}
 # include headers produced by uic
 include_directories( ${CMAKE_BINARY_DIR} )
 
-add_executable( imageflow WIN32 MACOSX_BUNDLE ${imageflow_SOURCES} ${imageflow_HEADERS} ${imageflow_SOURCES_MOC} ${imageflow_SOURCES_RC} ${imageflow_FORMS_HEADERS}  )
+add_executable( imageflow WIN32 MACOSX_BUNDLE ${imageflow_SOURCES} ${imageflow_HEADERS}  ${imageflow_FORMS}  )
 
 target_link_libraries( imageflow ${REQUIRED_LIBS})
 
-#enable warnings
+# enable warnings
 if(CMAKE_COMPILER_IS_GNUCC)
     set_property( TARGET imageflow APPEND_STRING PROPERTY COMPILE_FLAGS -Wall )
 endif(CMAKE_COMPILER_IS_GNUCC)
@@ -125,5 +133,24 @@ if(MSVC)
     set_property( TARGET imageflow APPEND_STRING PROPERTY COMPILE_FLAGS /W3 )
 endif( MSVC )
 
-#set version of binary
+# set version of binary
 set_target_properties(imageflow PROPERTIES VERSION ${VERSION_STRING})
+
+# setup unit tests with google test and google mock
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/googletest)
+
+set( imageflow_TESTS
+    test/maintest.cpp)
+
+enable_testing()
+
+find_package(GTest REQUIRED)
+
+include_directories(${GTEST_INCLUDE_DIRS})
+
+add_executable(imageflow_tests ${imageflow_TESTS})
+
+target_link_libraries(imageflow_tests gtest_main)
+
+add_test(NAME imageflow_tests COMMAND imageflow_tests)

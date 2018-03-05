@@ -58,7 +58,7 @@
   <customwidget>
    <class>GraphWidget</class>
    <extends>QGraphicsView</extends>
-   <header>../src/gui/graph/graphwidget.h</header>
+   <header>src/gui/graph/graphwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
