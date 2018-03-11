@@ -115,13 +115,18 @@ void Node::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     {
         qDebug() << "right click event " << _nodeID;
         graph->setLastClickedNodeID(0); //check it if 0 is good default value
+        graph->setLastClickedNodePtr(this);
+
+        QPoint p1 = event->pos().toPoint();
+        _p1 = p1;
+        QPoint p2 = p1;
+
+        //graph->startDrawing(p1,p2);
     }
     else
     {
         qDebug() << "left click event " << _nodeID;
     }
-
-
 
   update();
   QGraphicsItem::mousePressEvent(event);
@@ -132,6 +137,7 @@ void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     {
         qDebug() << "right release event " << _nodeID;
         graph->setLastClickedNodeID(_nodeID);
+        //graph->stopDrawing();
     }
     else
     {
@@ -143,10 +149,20 @@ void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
   QGraphicsItem::mouseReleaseEvent(event);
 }
 
+void Node::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+{
+
+    //_p2 = event->pos().toPoint();
+    //graph->startDrawing(_p1, _p2);
+    update();
+    QGraphicsItem::mouseMoveEvent(event);
+}
+
 void Node::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
      qDebug() << "hoverEnterEvent " << _nodeID;
      graph->setLastHoveredNodeID(_nodeID);
+     graph->setLastHoveredNodePtr(this);
 
      update();
      QGraphicsItem::hoverEnterEvent(event);

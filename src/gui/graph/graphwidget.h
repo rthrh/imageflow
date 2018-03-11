@@ -14,7 +14,10 @@ class GraphWidget : public QGraphicsView {
   void itemMoved();
   void setLastClickedNodeID(int nodeID);
   void setLastHoveredNodeID(int nodeID);
+  void setLastClickedNodePtr(Node * node);
+  void setLastHoveredNodePtr(Node * node);
   bool makeConnection();
+
 
  public slots:
   void zoomIn();
@@ -22,6 +25,7 @@ class GraphWidget : public QGraphicsView {
   void addNewNode(int compID, std::string name);
 
  protected:
+  void paintEvent(QPaintEvent *event) override;
   void keyPressEvent(QKeyEvent *event) override;
   void timerEvent(QTimerEvent *event) override;
 #if QT_CONFIG(wheelevent)
@@ -38,6 +42,11 @@ class GraphWidget : public QGraphicsView {
   int _nodeID {1};
   int _lastRightClickedNodeID{0};
   int _lastRightHoveredNodeID{0};
+  Node *_lastRightClickedNodePtr{nullptr};
+  Node *_lastRightHoveredNodePtr{nullptr};
+  QLine _line;
+  bool _drawFlag = false;
+
 };
 
 #endif  // GRAPHWIDGET_H

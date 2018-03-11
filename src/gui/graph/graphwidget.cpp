@@ -18,22 +18,21 @@ GraphWidget::GraphWidget(QWidget *parent) : QGraphicsView(parent), timerId(0) {
   setTransformationAnchor(AnchorUnderMouse);
   scale(qreal(0.8), qreal(0.8));
   setMinimumSize(400, 400);
-  setWindowTitle(tr("Elastic Nodes"));
+  setWindowTitle(tr("Imageflow graph widget"));
 
-  // Node *node1 = new Node(this);
-  // Node *node2 = new Node(this);
-  // Node *node3 = new Node(this);
+  Node * node1 = new Node(this, 111, "Name 111", 100);
+  Node * node2 = new Node(this, 222, "Name 222", 101);
 
-  //_scene->addItem(node1);
-  //_scene->addItem(node2);
-  //_scene->addItem(node3);
 
-  //_scene->addItem(new Edge(node1, node2)); //draw line and create connection
-  //_scene->addItem(new Edge(node1, node3));
+  //temporary node and edge generation on scene in scene constructor
+  _scene->addItem(node1);
+  _scene->addItem(node2);
 
-  // node1->setPos(-50, -50);
-  // node2->setPos(0, -50);
-  // node3->setPos(50, -50);
+  Edge * edge = new Edge(node1,node2);
+  _scene->addItem(edge);
+
+
+
 }
 
 void GraphWidget::itemMoved() {
@@ -55,9 +54,20 @@ void GraphWidget::setLastHoveredNodeID(int nodeID)
     }
     else
     {
-
+        //...
 
     }
+}
+
+void GraphWidget::setLastClickedNodePtr(Node* node)
+{
+    _lastRightClickedNodePtr = node;
+}
+
+void GraphWidget::setLastHoveredNodePtr(Node *node)
+{
+    _lastRightHoveredNodePtr = node;
+
 }
 
 bool GraphWidget::makeConnection()
@@ -65,14 +75,18 @@ bool GraphWidget::makeConnection()
 
     if (_lastRightClickedNodeID != _lastRightHoveredNodeID)
     {
-        qDebug() << "trying to make connection from:" << _lastRightClickedNodeID << " to " << _lastRightHoveredNodeID;
+        qDebug() << "trying to make connection from:" << _lastRightClickedNodePtr << " to " << _lastRightHoveredNodePtr;
 
-
+        //doesnt want to display edges!!!
+        Edge * edge = new Edge(_lastRightClickedNodePtr,_lastRightHoveredNodePtr);
+        _scene->addItem(edge);
     }
 
     setLastHoveredNodeID(0);
     setLastClickedNodeID(0);
+    update();
 }
+
 
 void GraphWidget::keyPressEvent(QKeyEvent *event) {
   // TODO: make it custom
@@ -102,6 +116,13 @@ void GraphWidget::keyPressEvent(QKeyEvent *event) {
     default:
       QGraphicsView::keyPressEvent(event);
   }
+}
+
+void GraphWidget::paintEvent(QPaintEvent *event)
+{
+
+    qDebug() << "paint event";
+    QGraphicsView::paintEvent(event);
 }
 
 void GraphWidget::timerEvent(QTimerEvent *event) {

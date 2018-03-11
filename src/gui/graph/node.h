@@ -33,6 +33,7 @@ class Node : public QGraphicsItem {
 
   void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
   void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+  void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
 
   void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
   void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
@@ -44,6 +45,8 @@ class Node : public QGraphicsItem {
   int _nodeID;
   int _compID;
   std::string _compName;
+  QPoint _p1;
+  QPoint _p2;
 };
 
 #endif  // NODE_H
