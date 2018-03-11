@@ -6,6 +6,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QStyleOption>
+#include <QDebug>
 
 Node::Node(GraphWidget *graphWidget, int compID, std::string name, int nodeID)
     : graph(graphWidget), _compID(compID), _compName(name), _nodeID(nodeID) {
@@ -13,6 +14,7 @@ Node::Node(GraphWidget *graphWidget, int compID, std::string name, int nodeID)
   setFlag(ItemSendsGeometryChanges);
   setCacheMode(DeviceCoordinateCache);
   setZValue(-1);
+  setAcceptHoverEvents(true);
 }
 
 void Node::addEdge(Edge *edge) {
@@ -109,11 +111,55 @@ QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value) {
 }
 
 void Node::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    if(event->button() == Qt::RightButton)
+    {
+        qDebug() << "right click event " << _nodeID;
+        graph->setLastClickedNodeID(0); //check it if 0 is good default value
+    }
+    else
+    {
+        qDebug() << "left click event " << _nodeID;
+    }
+
+
+
   update();
   QGraphicsItem::mousePressEvent(event);
 }
 
 void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
+    if(event->button() == Qt::RightButton)
+    {
+        qDebug() << "right release event " << _nodeID;
+        graph->setLastClickedNodeID(_nodeID);
+    }
+    else
+    {
+        qDebug() << "left release event " << _nodeID;
+
+    }
+
   update();
   QGraphicsItem::mouseReleaseEvent(event);
 }
+
+void Node::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+     qDebug() << "hoverEnterEvent " << _nodeID;
+     graph->setLastHoveredNodeID(_nodeID);
+
+     update();
+     QGraphicsItem::hoverEnterEvent(event);
+}
+
+void Node::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    qDebug() << "hoverLeaveEvent " << _nodeID;
+
+
+    update();
+    QGraphicsItem::hoverLeaveEvent(event);
+}
+
+
+

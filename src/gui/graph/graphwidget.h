@@ -12,6 +12,9 @@ class GraphWidget : public QGraphicsView {
   GraphWidget(QWidget *parent = 0);
 
   void itemMoved();
+  void setLastClickedNodeID(int nodeID);
+  void setLastHoveredNodeID(int nodeID);
+  bool makeConnection();
 
  public slots:
   void zoomIn();
@@ -32,7 +35,9 @@ class GraphWidget : public QGraphicsView {
   int timerId;
   Node *centerNode;
   QGraphicsScene *_scene;
-  int _nodeID;
+  int _nodeID {1};
+  int _lastRightClickedNodeID{0};
+  int _lastRightHoveredNodeID{0};
 };
 
 #endif  // GRAPHWIDGET_H

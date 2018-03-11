@@ -5,7 +5,7 @@
 #include <math.h>
 
 #include <QKeyEvent>
-//#include <QRandomGenerator>
+#include <QDebug>
 
 GraphWidget::GraphWidget(QWidget *parent) : QGraphicsView(parent), timerId(0) {
   _scene = new QGraphicsScene(this);
@@ -38,6 +38,40 @@ GraphWidget::GraphWidget(QWidget *parent) : QGraphicsView(parent), timerId(0) {
 
 void GraphWidget::itemMoved() {
   if (!timerId) timerId = startTimer(1000 / 25);
+}
+
+void GraphWidget::setLastClickedNodeID(int nodeID)
+{
+    _lastRightClickedNodeID = nodeID;
+}
+
+void GraphWidget::setLastHoveredNodeID(int nodeID)
+{
+    _lastRightHoveredNodeID = nodeID;
+
+    if ((_lastRightClickedNodeID != 0) && (_lastRightHoveredNodeID != 0))
+    {
+        makeConnection();
+    }
+    else
+    {
+
+
+    }
+}
+
+bool GraphWidget::makeConnection()
+{
+
+    if (_lastRightClickedNodeID != _lastRightHoveredNodeID)
+    {
+        qDebug() << "trying to make connection from:" << _lastRightClickedNodeID << " to " << _lastRightHoveredNodeID;
+
+
+    }
+
+    setLastHoveredNodeID(0);
+    setLastClickedNodeID(0);
 }
 
 void GraphWidget::keyPressEvent(QKeyEvent *event) {

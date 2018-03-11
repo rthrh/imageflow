@@ -34,6 +34,9 @@ class Node : public QGraphicsItem {
   void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
   void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
+  void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+  void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
+
  private:
   QList<Edge *> edgeList;
   QPointF newPos;
